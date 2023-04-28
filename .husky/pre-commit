@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx git-branch-is -q -I -r "^(main|master|develop)$" || npx --no-install lint-staged
