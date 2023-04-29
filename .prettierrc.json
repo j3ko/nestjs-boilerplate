@@ -6,7 +6,5 @@
   "trailingComma": "all",
   "bracketSameLine": true,
   "useTabs": false,
-  "endOfLine": "lf",
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindConfig": "./tailwind.config.js"
+  "endOfLine": "lf"
 }
