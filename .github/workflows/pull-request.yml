@@ -1,11 +1,11 @@
-name: Lint on Pull Request
+name: Lint and test on pull request
 
 on:
   pull_request:
     types: [opened, synchronize]
 
 jobs:
-  lint:
+  pull-request:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -14,3 +14,5 @@ jobs:
         run: yarn install
       - name: Run lint
         run: yarn lint
+      - name: Run test
+        run: yarn test
