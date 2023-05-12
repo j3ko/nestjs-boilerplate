@@ -408,6 +408,18 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.39.0.tgz#58b536bcc843f4cd1e02a7e6171da5c040f4d44b"
   integrity sha512-kf9RB0Fg7NZfap83B3QOqOGg9QmD9yBudqQXzzOtn3i4y7ZUXe5ONeW34Gwi+TxhH4mvj72R1Zc300KUMa9Bng==
 
+"@hapi/hoek@^9.0.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"
+  integrity sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==
+
+"@hapi/topo@^5.0.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@hapi/topo/-/topo-5.1.0.tgz#dc448e332c6c6e37a4dc02fd84ba8d44b9afb012"
+  integrity sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==
+  dependencies:
+    "@hapi/hoek" "^9.0.0"
+
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.8.tgz#03595ac2075a4dc0f191cc2131de14fbd7d410b9"
@@ -634,6 +646,13 @@
     "@types/node" "*"
     "@types/yargs" "^17.0.8"
     chalk "^4.0.0"
+
+"@joi/date@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@joi/date/-/date-2.1.0.tgz#fa7e3069a63c17d9ebe51a0b667f090c288de237"
+  integrity sha512-2zN5m0LgxZp/cynHGbzEImVmFIa+n+IOb/Nlw5LX/PLJneeCwG1NbiGw7MvPjsAKUGQK8z31Nn6V6lEN+4fZhg==
+  dependencies:
+    moment "2.x.x"
 
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
@@ -922,6 +941,23 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
+
+"@sideway/address@^4.1.3":
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.4.tgz#03dccebc6ea47fdc226f7d3d1ad512955d4783f0"
+  integrity sha512-7vwq+rOHVWjyXxVlR76Agnvhy8I9rpzjosTESvmhNeXOXdZZB15Fl+TI9x1SiHZH5Jv2wTGduSxFDIaq0m3DUw==
+  dependencies:
+    "@hapi/hoek" "^9.0.0"
+
+"@sideway/formula@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@sideway/formula/-/formula-3.0.1.tgz#80fcbcbaf7ce031e0ef2dd29b1bfc7c3f583611f"
+  integrity sha512-/poHZJJVjx3L+zVD6g9KgHfYnb443oi7wLu/XKojDviHy6HOEOA6z1Trk5aR1dGcmPenJEgb2sK2I80LeS3MIg==
+
+"@sideway/pinpoint@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
+  integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
 "@sinclair/typebox@^0.25.16":
   version "0.25.24"
@@ -2216,6 +2252,11 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
+
+dotenv@^16.0.3:
+  version "16.0.3"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
+  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
 
 eastasianwidth@^0.2.0:
   version "0.2.0"
@@ -3542,6 +3583,26 @@ jest@29.5.0:
     import-local "^3.0.2"
     jest-cli "^29.5.0"
 
+joi-typescript-validator@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/joi-typescript-validator/-/joi-typescript-validator-0.2.0.tgz#21b8393a24f5975f7ec41e9b9713461fb1a50f31"
+  integrity sha512-li8pz+QWIHjsZWYpcwY1WMNaDFOFqO5Eu8e4Q+hXoVqvbruitbIZYBOoHFelqaVia33BRmI+HMoXFVNgsFt4+Q==
+  dependencies:
+    "@joi/date" "^2.1.0"
+    joi "^17.5.0"
+    reflect-metadata "^0.1.13"
+
+joi@^17.5.0, joi@^17.9.2:
+  version "17.9.2"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-17.9.2.tgz#8b2e4724188369f55451aebd1d0b1d9482470690"
+  integrity sha512-Itk/r+V4Dx0V3c7RLFdRh12IOjySm2/WGPMubBT92cQvRfYZhPM2W0hZlctjj72iES8jsRCwp7S/cRmWBnJ4nw==
+  dependencies:
+    "@hapi/hoek" "^9.0.0"
+    "@hapi/topo" "^5.0.0"
+    "@sideway/address" "^4.1.3"
+    "@sideway/formula" "^3.0.1"
+    "@sideway/pinpoint" "^2.0.0"
+
 js-sdsl@^4.1.4:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.4.0.tgz#8b437dbe642daa95760400b602378ed8ffea8430"
@@ -3903,6 +3964,11 @@ mkdirp@^0.5.4:
   integrity sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==
   dependencies:
     minimist "^1.2.6"
+
+moment@2.x.x:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
 
 ms@2.0.0:
   version "2.0.0"
