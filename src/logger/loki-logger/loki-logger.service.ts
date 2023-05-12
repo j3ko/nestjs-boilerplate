@@ -10,7 +10,10 @@ export class LokiLoggerService extends WinstonLoggerService {
     const opt = {
       level: 'info',
       format: format.combine(format.timestamp(), format.json()),
-      transports: [new LokiTransport({ host: host || 'http://127.0.0.1:3100' })],
+      transports: [new LokiTransport({ 
+        host: host || 'http://127.0.0.1:3100',
+        labels: { job: 'nestjs-boilerplate' } 
+      })],
     };
     super(opt);
   }

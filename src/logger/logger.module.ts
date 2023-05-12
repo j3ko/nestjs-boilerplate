@@ -7,11 +7,16 @@ import { WinstonLoggerService } from './winston-logger/winston-logger.service';
   providers: [
     {
       provide: WinstonLoggerService,
-      useFactory: () => new WinstonLoggerService(),
+      useFactory: async () => new WinstonLoggerService(),
     },
     {
       provide: LokiLoggerService,
-      useFactory: () => new LokiLoggerService(),
+      useFactory: async () => {
+        if (process.env.NODE_ENV === 'test') {
+          return new Logger();
+        }
+        return new LokiLoggerService()
+      },
     },
     {
       provide: Logger,
