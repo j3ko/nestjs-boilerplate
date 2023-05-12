@@ -1,6 +1,6 @@
 import { Logger, Module } from '@nestjs/common';
-import { LokiLoggerService } from './loki-logger/loki-logger.service';
 
+import { LokiLoggerService } from './loki-logger/loki-logger.service';
 import { WinstonLoggerService } from './winston-logger/winston-logger.service';
 
 @Module({
@@ -15,7 +15,7 @@ import { WinstonLoggerService } from './winston-logger/winston-logger.service';
         if (process.env.NODE_ENV === 'test') {
           return new Logger();
         }
-        return new LokiLoggerService()
+        return new LokiLoggerService();
       },
     },
     {
