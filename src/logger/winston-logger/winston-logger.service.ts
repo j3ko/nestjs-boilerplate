@@ -1,17 +1,18 @@
-import { Injectable } from '@nestjs/common';
-import { LoggerService } from '@nestjs/common';
-import { createLogger, format, LoggerOptions, transports } from 'winston';
+import { Injectable, LoggerService, Scope } from '@nestjs/common';
+import { createLogger, format, transports, Logger } from 'winston';
 
-@Injectable()
+@Injectable({ scope: Scope.TRANSIENT })
 export class WinstonLoggerService implements LoggerService {
-  protected readonly logger;
+  protected readonly logger: Logger;
 
   constructor(options?: any) {
-    const opt = options || {
+    const opt = Object.assign({
       level: 'info',
-      format: format.combine(format.timestamp(), format.json()),
+      format: format.combine(format.label({ label: 'nestjs-boilerplate' }), format.timestamp(), format.printf(
+        info => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`
+      ), format.colorize({ all: true })),
       transports: [new transports.Console()],
-    };
+    }, options);
 
     this.logger = createLogger(opt);
   }

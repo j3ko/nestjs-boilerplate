@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { createLogger, format, LoggerOptions, transports } from 'winston';
+import { Injectable, Scope } from '@nestjs/common';
+import { format } from 'winston';
 import LokiTransport from 'winston-loki';
 
 import { WinstonLoggerService } from '@/logger/winston-logger/winston-logger.service';
 
-@Injectable()
+@Injectable({ scope: Scope.TRANSIENT })
 export class LokiLoggerService extends WinstonLoggerService {
   constructor(host?: string) {
     const opt = {
