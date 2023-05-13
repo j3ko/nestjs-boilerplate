@@ -5,12 +5,12 @@ import { createLogger, format, Logger, transports } from 'winston';
 export class WinstonLoggerService implements LoggerService {
   protected readonly logger: Logger;
 
-  constructor(options?: any) {
+  constructor(appName: string, options?: any) {
     const opt = Object.assign(
       {
         level: 'info',
         format: format.combine(
-          format.label({ label: 'nestjs-boilerplate' }),
+          format.label({ label: appName }),
           format.timestamp(),
           format.printf(
             (info) => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`,

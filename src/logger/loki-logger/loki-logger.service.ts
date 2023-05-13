@@ -6,17 +6,16 @@ import { WinstonLoggerService } from '@/logger/winston-logger/winston-logger.ser
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class LokiLoggerService extends WinstonLoggerService {
-  constructor(host?: string) {
+  constructor(appName: string, host: string) {
     const opt = {
-      level: 'info',
       format: format.combine(format.timestamp(), format.json()),
       transports: [
         new LokiTransport({
-          host: host || 'http://127.0.0.1:3100',
-          labels: { job: 'nestjs-boilerplate' },
+          host,
+          labels: { job: appName },
         }),
       ],
     };
-    super(opt);
+    super(appName, opt);
   }
 }

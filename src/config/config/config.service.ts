@@ -5,6 +5,7 @@ import Joi from 'joi';
 import { getSchema, Validate } from 'joi-typescript-validator';
 import * as path from 'path';
 
+import pack from '../../../package.json';
 import { EnvConfig } from '../env.config';
 
 @Injectable()
@@ -23,7 +24,11 @@ export class ConfigService {
     }
 
     const env = new EnvConfig(
-      { NODE_ENV: 'development' },
+      {
+        NODE_ENV: 'development',
+        APP_NAME: pack.name,
+        APP_VERSION: pack.version,
+      },
       fromFile.parsed || {},
       this.getEnvironmentVariables(),
     );
