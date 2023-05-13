@@ -5,12 +5,12 @@ import { createLogger, format, Logger, transports } from 'winston';
 export class WinstonLoggerService implements LoggerService {
   protected readonly logger: Logger;
 
-  constructor(appName: string, options?: any) {
+  constructor(label: string, options?: any) {
     const opt = Object.assign(
       {
         level: 'silly',
         format: format.combine(
-          format.label({ label: appName }),
+          format.label({ label }),
           format.errors({ stack: true }),
           format.colorize({ message: true }),
           format.timestamp(),
