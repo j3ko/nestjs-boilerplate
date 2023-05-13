@@ -14,6 +14,7 @@ const getLogger = async (config: ConfigService) => {
   if (config.env.LOKI_HOST) {
     result = new LokiLoggerService(
       config.env.APP_NAME,
+      config.env.NODE_ENV,
       config.env.LOKI_HOST || 'http://127.0.0.1:3100',
     );
   }

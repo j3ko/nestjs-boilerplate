@@ -8,14 +8,18 @@ export class WinstonLoggerService implements LoggerService {
   constructor(appName: string, options?: any) {
     const opt = Object.assign(
       {
-        level: 'info',
+        level: 'silly',
         format: format.combine(
           format.label({ label: appName }),
+          format.errors({ stack: true }),
+          format.colorize({ message: true }),
           format.timestamp(),
-          format.printf(
-            (info) => ` ${info.label}  ${info.timestamp}  ${info.level} : ${info.message}`,
-          ),
-          format.colorize({ all: true }),
+          format.printf(({ level, message, timestamp, stack }) => {
+            if (stack) {
+              return `${timestamp} ${level}: ${message} - ${stack}`;
+            }
+            return `${timestamp} ${level}: ${message}`;
+          }),
         ),
         transports: [new transports.Console()],
       },
@@ -29,8 +33,8 @@ export class WinstonLoggerService implements LoggerService {
     this.logger.info(message);
   }
 
-  error(message: string, trace: string) {
-    this.logger.error(message, { trace });
+  error(message: string, error: Error) {
+    this.logger.error(error || message);
   }
 
   warn(message: string) {

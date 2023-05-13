@@ -1,21 +1,36 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { format } from 'winston';
+import { transports } from 'winston';
 import LokiTransport from 'winston-loki';
 
 import { WinstonLoggerService } from '@/logger/winston-logger/winston-logger.service';
 
 @Injectable({ scope: Scope.TRANSIENT })
 export class LokiLoggerService extends WinstonLoggerService {
-  constructor(appName: string, host: string) {
+  constructor(job: string, env: string, host: string) {
     const opt = {
-      format: format.combine(format.timestamp(), format.json()),
       transports: [
+        new transports.Console(),
         new LokiTransport({
           host,
-          labels: { job: appName },
+          labels: { job, env },
+          onConnectionError: (err) => console.error(err),
         }),
       ],
     };
-    super(appName, opt);
+    super(job, opt);
+  }
+
+  error(messageOrError: string | Error, error?: Error) {
+    if (typeof messageOrError === 'string') {
+      this.logger.error(`${messageOrError}\n\n${this.serializeError(error)}`);
+    } else {
+      this.logger.error(`${this.serializeError(messageOrError as Error)}`);
+    }
+  }
+
+  private serializeError(error: Error) {
+    if (!error) return;
+    const { message, name, stack } = error;
+    return JSON.stringify({ message, name, stack }, null, 2);
   }
 }
