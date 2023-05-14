@@ -8,6 +8,9 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed dependencies
+RUN apk update && apk add python3 && apk add build-base
+
+# Install packages
 RUN yarn install
 
 # Build the NestJS app
