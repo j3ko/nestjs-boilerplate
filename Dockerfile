@@ -4,8 +4,11 @@ FROM node:lts-alpine3.16
 # Set the working directory to /app
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Copy source code
 COPY . /app
+
+# Allow volumes to be mapped
+VOLUME /app/config
 
 # Install any needed dependencies
 RUN apk update && apk add python3 && apk add build-base

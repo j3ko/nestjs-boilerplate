@@ -15,6 +15,8 @@ export class ConfigService {
 
   constructor(filePath = '') {
     const fullPath = path.resolve(__dirname, filePath);
+    console.debug(`loading config from ${fullPath}`);
+
     let fromFile: dotenv.DotenvConfigOutput;
 
     if (!fs.existsSync(fullPath)) {
@@ -22,6 +24,8 @@ export class ConfigService {
     } else {
       fromFile = dotenv.config({ path: fullPath });
     }
+
+    console.debug(JSON.stringify(fromFile.parsed, null, 2));
 
     const env = new EnvConfig(
       {
