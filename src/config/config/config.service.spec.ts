@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import * as path from 'path';
 
-import { ConfigService } from './config.service';
 import { ConfigModuleOptions } from '../config.module';
+import { ConfigService } from './config.service';
 
 describe('ConfigService', () => {
   let service: ConfigService;

@@ -4,7 +4,10 @@ import { ConfigService } from './config/config/config.service';
 
 @Injectable()
 export class AppService {
-  constructor(private readonly logger: Logger, private readonly config: ConfigService) {}
+  constructor(
+    private readonly logger: Logger,
+    private readonly config: ConfigService,
+  ) {}
 
   getHello(): string {
     this.logger.log(`Running: ${this.config.env.NODE_ENV}`);
