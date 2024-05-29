@@ -48,3 +48,23 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
+
+## Using this repository as a template
+
+On your forked repository you have to add this template repository as a remote.
+
+```bash
+git remote add template https://github.com/j3ko/nestjs-boilerplate.git
+```
+
+Then run git fetch to update the changes
+
+```bash
+git fetch --all
+```
+
+Then is possible to merge updates from this template to your repository.
+
+```bash
+git merge template/main --allow-unrelated-histories
+```
