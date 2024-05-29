@@ -1,20 +1,24 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
-import Joi from 'joi';
 import { getSchema, Validate } from 'joi-typescript-validator';
 import * as path from 'path';
 
 import pack from '../../../package.json';
 import { EnvConfig } from '../env.config';
 
+export interface ConfigServiceOptions {
+  appName?: string;
+  filePath: string;
+}
+
 @Injectable()
 export class ConfigService {
   private readonly logger = new Logger(ConfigService.name);
   public env: EnvConfig;
 
-  constructor(filePath = '') {
-    const fullPath = path.resolve(__dirname, filePath);
+  constructor(@Inject('CONFIG_OPTIONS') options: ConfigServiceOptions) {
+    const fullPath = path.resolve(__dirname, options.filePath);
     console.debug(`loading config from ${fullPath}`);
 
     let fromFile: dotenv.DotenvConfigOutput;
@@ -30,7 +34,7 @@ export class ConfigService {
     const env = new EnvConfig(
       {
         NODE_ENV: 'development',
-        APP_NAME: pack.name,
+        APP_NAME: options?.appName || pack.name,
         APP_VERSION: pack.version,
       },
       fromFile.parsed || {},
@@ -45,7 +49,7 @@ export class ConfigService {
   }
 
   private getEnvironmentVariables(): EnvConfig {
-    const schema: Joi.Schema = getSchema(EnvConfig);
+    const schema = getSchema(EnvConfig);
     const env: EnvConfig | any = {};
     Object.keys(schema.describe().keys || []).forEach((element) => {
       if (process.env[element] !== undefined) {

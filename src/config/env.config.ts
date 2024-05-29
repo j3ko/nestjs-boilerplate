@@ -3,16 +3,20 @@ import { Optional, Required, ValidOptions } from 'joi-typescript-validator';
 export class EnvConfig {
   @Required()
   @ValidOptions('test', 'development', 'production')
-  public NODE_ENV: 'test' | 'development' | 'production';
-
-  @Required()
-  public APP_NAME: string;
-
-  @Required()
-  public APP_VERSION: string;
+  NODE_ENV: 'test' | 'development' | 'production';
 
   @Optional()
-  public LOKI_HOST: string;
+  @ValidOptions('error', 'warn', 'info', 'http', 'verbose', 'debug', 'silly')
+  LOG_LEVEL: 'error' | 'warn' | 'info' | 'http' | 'verbose' | 'debug' | 'silly';
+
+  @Required()
+  APP_NAME: string;
+
+  @Required()
+  APP_VERSION: string;
+
+  @Optional()
+  LOKI_HOST: string;
 
   constructor(...values) {
     Object.assign(this, ...values);
