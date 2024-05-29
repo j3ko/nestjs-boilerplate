@@ -1,17 +1,31 @@
-import { Module } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
+import { Global } from '@nestjs/common/decorators';
 import * as path from 'path';
 
 import { ConfigService } from './config/config.service';
 
-@Module({
-  providers: [
-    {
-      provide: ConfigService,
-      useValue: new ConfigService(
-        path.join(process.cwd(), `config/.env.${process.env.NODE_ENV || 'development'}`),
-      ),
+export interface ConfigModuleOptions {
+  appName?: string;
+}
+
+const configServiceProviderFactory = (options?: ConfigModuleOptions) => {
+  return {
+    provide: 'CONFIG_OPTIONS',
+    useValue: {
+      appName: options?.appName,
+      filePath: path.join(process.cwd(), `config/.env.${process.env.NODE_ENV || 'development'}`),
     },
-  ],
-  exports: [ConfigService],
-})
-export class ConfigModule {}
+  };
+};
+
+@Global()
+@Module({})
+export class ConfigModule {
+  static forRoot(options?: ConfigModuleOptions): DynamicModule {
+    return {
+      module: ConfigModule,
+      providers: [configServiceProviderFactory(options), ConfigService],
+      exports: [ConfigService],
+    };
+  }
+}
