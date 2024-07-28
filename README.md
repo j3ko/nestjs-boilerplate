@@ -1,10 +1,10 @@
 ## Features
 
 - VS Code [devcontainers](https://code.visualstudio.com/docs/devcontainers/containers) for consistent and portable development
-- Semantic versioning and release via [request-please](https://github.com/google-github-actions/release-please-action) 
+- Semantic versioning and release via [request-please](https://github.com/google-github-actions/release-please-action)
 - Custom typesafe environment [configuration module](src/config/config.module.ts)
 - Custom application [logging](src/logger/winston-logger.ts) (uses [nest-winston](https://github.com/gremo/nest-winston) and optional [winston-loki](https://github.com/JaniAnttonen/winston-loki))
-- Custom [eslint](./.eslintrc.js) and [prettier](./.prettierrc.json) linting/formatting 
+- Custom [eslint](./.eslintrc.js) and [prettier](./.prettierrc.json) linting/formatting
 - Linting precommit [rules](./.husky/pre-commit) via [husky](https://github.com/typicode/husky)
 
 ## Installation
@@ -68,3 +68,10 @@ Then is possible to merge updates from this template to your repository.
 ```bash
 git merge template/main --allow-unrelated-histories
 ```
+
+## Common issues
+
+### When debugging, "[Cannot find module bootloader.js](https://github.com/microsoft/vscode-js-debug/issues/374)" is encountered
+
+1. Open the command palette (Ctrl+Shift+P), disable and then re-enable auto-attach
+2. Reload the terminal
